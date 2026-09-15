@@ -1,1 +1,93 @@
+RESUMEN DE RESPUESTAS
 
+1. Identificar entidades
+
+Cliente, Producto, Pedido y Empleado.
+
+2. Atributos de cada entidad
+
+Cliente: nombre, dirección, teléfono y email. El email es multivaluado porque un cliente puede tener más de uno. La dirección puede dividirse en calle, número y localidad.
+
+Producto: código, nombre, precio y stock.
+
+Pedido: fecha y estado.
+
+Empleado: id_empleado y nombre.
+
+3. Claves candidatas y clave primaria
+
+Cliente: candidata {id_cliente}, PK = id_cliente porque identifica de forma única a cada cliente.
+
+Producto: candidata {código}, PK = código porque identifica de forma única a cada producto.
+
+Pedido: candidata {id_pedido}, PK = id_pedido porque permite identificar cada pedido.
+
+Empleado: candidata {id_empleado}, PK = id_empleado porque identifica de forma única a cada empleado.
+
+4. Relaciones entre entidades
+
+Cliente - Pedido: realiza (un cliente puede realizar varios pedidos).
+
+Pedido - Producto: contiene (un pedido puede contener varios productos).
+
+Empleado - Pedido: atiende (un empleado puede atender varios pedidos).
+
+5. Cardinalidad de cada relación
+
+Cliente - Pedido: 1:N, porque un cliente puede realizar varios pedidos, pero cada pedido pertenece a un solo cliente.
+
+Pedido - Producto: N:M, porque un pedido puede contener varios productos y un producto puede aparecer en varios pedidos.
+
+Empleado - Pedido: 1:N, porque un empleado puede atender varios pedidos, pero cada pedido es atendido por un solo empleado.
+
+6. Atributos de las relaciones
+
+Pedido - Producto: cantidad.
+
+Cantidad sirve para saber cuántas unidades de un producto hay en un pedido.
+
+7. Atributos multivaluados
+
+El email de Cliente es multivaluado porque un cliente puede tener más de un email.
+
+Para guardarlos en el esquema relacional se crea una nueva tabla llamada Cliente_Email, con los campos id_cliente y email. La clave primaria está compuesta por (id_cliente, email).
+
+8. Tablas del diccionario de datos (I)
+
+No lo he visto.
+
+9. Tablas del diccionario de datos (II)
+
+No lo he visto.
+
+10. Listado final de tablas
+
+Tabla Cliente:
+Atributos: id_cliente, nombre, dirección, teléfono.
+PK: id_cliente.
+FK: ninguna.
+
+Tabla Cliente_Email:
+Atributos: id_cliente, email.
+PK: (id_cliente, email).
+FK: id_cliente, relacionado con Cliente.
+
+Tabla Producto:
+Atributos: código, nombre, precio, stock.
+PK: código.
+FK: ninguna.
+
+Tabla Empleado:
+Atributos: id_empleado, nombre.
+PK: id_empleado.
+FK: ninguna.
+
+Tabla Pedido:
+Atributos: id_pedido, fecha, estado, id_cliente, id_empleado.
+PK: id_pedido.
+FK: id_cliente e id_empleado.
+
+Tabla Pedido_Producto:
+Atributos: id_pedido, código, cantidad.
+PK: (id_pedido, código).
+FK: id_pedido y código.
