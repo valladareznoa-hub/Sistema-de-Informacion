@@ -33,13 +33,13 @@ El proyecto consta de la siguiente estructura principal:
         /public/index.html      <-- Interfaz web (formulario y tabla)
         /public/js.js           <-- Código JS que envía/pide datos al servidor
 
-node_modules/         <-- Librerías instaladas (Express, SQLite3)
+node_modules/           <-- Librerías instaladas (Express, SQLite3)
 
 database.db           <-- Base de datos SQLite (se crea sola)
 
-package.json          <-- Configuración de dependencias
+package.json           <-- Configuración de dependencias
 
-server.js             <-- Servidor Node.js y lógica de conexión
+server.js            <-- Servidor Node.js y lógica de conexión
 
 
 
