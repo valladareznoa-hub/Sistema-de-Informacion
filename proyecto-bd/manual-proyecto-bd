@@ -5,7 +5,6 @@
 
 1. DESCRIPCIÓN DEL PROYECTO
 
-
 Este sistema permite registrar alumnos desde una página web, guardarlos
 
 de forma permanente en una base de datos local (SQLite) y mostrarlos
