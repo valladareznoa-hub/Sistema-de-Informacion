@@ -14,9 +14,9 @@ dinámicamente en una tabla dentro de la misma interfaz.
 
 Integrantes y Trabajo:
 
-- Benicio: Diseño e interfaz HTML (formulario y tabla visual).
+- Benjamin Olivera: Diseño e interfaz HTML (formulario y tabla visual).
 
-- Noa: Configuración del servidor (Node.js/Express), conexiones (rutas)
+- Noa Valladarez: Configuración del servidor (Node.js/Express), conexiones (rutas)
 
   y base de datos (SQLite).
 
