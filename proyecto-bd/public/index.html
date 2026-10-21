@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Alumnos</title>
+</head>
+<body>
+
+    <h1>Registro de Alumnos</h1>
+
+    <form id="formulario">
+        <div>
+            <label for="nombre">Nombre y Apellido:</label>
+            <input type="text" id="nombre" placeholder="Ej: Enrique Manrique" required>
+        </div>
+
+        <div>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" placeholder="Ej: 67676767" required>
+        </div>
+
+        <div>
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" placeholder="Ej: 4 10" required>
+        </div>
+
+        <div>
+            <label for="especialidad">Especialidad:</label>
+            <select id="especialidad" required>
+                <option value="">Selecciona la especialidad</option>
+                <option value="Programación">Programación</option>
+                <option value="Construcción">Construcción</option>
+                <option value="Electromecánica">Electromecánica</option>
+                <option value="Electricidad">Electricidad</option>
+            </select>
+        </div>
+
+        
+         <div>
+            <label for="turno">Turno:</label>
+            <select id="turno" required>
+                <option value="">Seleccione el turno</option>
+                <option value="mañana">mañana</option> 
+               <option value="tarde">tarde</option>
+                <option value="noche">noche</option>
+            </select>
+        </div>
+        
+        <button type="submit">Guardar Registro</button>
+
+    </form>
+
+    <p id="mensaje"></p>
+
+    <script src="js.js"></script>
+</body>
+
+<hr style="margin: 30px 0;">
+
+    <h2>Lista de Alumnos Registrados</h2>
+    <button id="btn-cargar">Cargar / Actualizar Lista</button>
+    
+    <table border="1" style="margin-top: 15px; width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Curso</th>
+                <th>Especialidad</th>
+                <th>Turno</th>
+            </tr>
+        <tbody id="tabla-cuerpo">
+            <!-- Aquí se cargarán los alumnos con JavaScript -->
+        </tbody>
+    </table>
+
+</html>
