@@ -1,98 +1,79 @@
+          MANUAL DEL SISTEMA DE REGISTRO DE ALUMNOS
 
-        MANUAL DE USO DEL PROYECTO
+1. DESCRIPCIÓN GENERAL DEL PROYECTO
 
-   Sistema de Registro de Alumnos (Node.js + SQLite)
+Este sistema es una aplicación web full-stack diseñada para gestionar 
+el registro de alumnos de forma rápida, local y eficiente. Permite 
+ingresar los datos de los estudiantes a través de un formulario web, 
+guardarlos automáticamente en una base de datos y consultarlos en tiempo 
+real mediante una tabla interactiva en pantalla.
 
-1. DESCRIPCIÓN DEL PROYECTO
+2. DISTRIBUCIÓN DE ROLES Y TRABAJO EN EQUIPO
 
-Este sistema permite registrar alumnos desde una página web, guardarlos
+* Benicio: Diseño de la interfaz visual, maquetación y estructura de la 
+  página web (HTML/CSS).
+* Autor del proyecto: Programación de la lógica del servidor, creación de 
+  las rutas de comunicación (conectores) y configuración de la base de datos.
 
-de forma permanente en una base de datos local (SQLite) y mostrarlos
+3. ESTRUCTURA DE ARCHIVOS Y CARPETAS
 
-dinámicamente en una tabla dentro de la misma interfaz.
-
-
-Integrantes y Trabajo:
-
-- Benjamin Olivera: Diseño e interfaz HTML (formulario y tabla visual).
-
-- Noa Valladarez: Configuración del servidor (Node.js/Express), conexiones (rutas)
-
-  y base de datos (SQLite).
-
-
-
-2. ESTRUCTURA DE ARCHIVOS
-
-El proyecto consta de la siguiente estructura principal:
+El proyecto se organiza de la siguiente manera:
 
 /proyecto-bd
+│
+├── /public
+│     ├── index.html   <-- Interfaz visual (formulario y tabla de alumnos)
+│     └── js.js        <-- Lógica del navegador (captura eventos y hace peticiones)
+│
+├── server.js          <-- Servidor principal en Node.js y Express (controla la BD)
+├── database.db        <-- Base de datos SQLite (se genera automáticamente)
+├── package.json       <-- Configuración y dependencias del proyecto
+└── node_modules/      <-- Librerías instaladas (Express y SQLite3)
 
-  /public
+4. CÓMO FUNCIONAN LOS CONECTORES (EL PUENTE ENTRE AMBOS LADOS)
 
-        /public/index.html      <-- Interfaz web (formulario y tabla)
-        /public/js.js           <-- Código JS que envía/pide datos al servidor
+La comunicación entre la página web y el servidor se realiza mediante 
+peticiones HTTP asíncronas utilizando JavaScript:
 
-node_modules/           <-- Librerías instaladas (Express, SQLite3)
+* Conector POST (/api/agregar): 
+  Cuando el usuario completa el formulario en la interfaz y hace clic en 
+  enviar, el archivo `js.js` empaqueta los datos y los envía al servidor 
+  mediante esta ruta. El servidor los recibe, valida y ejecuta una orden 
+  SQL (`INSERT`) para guardarlos permanentemente en la base de datos SQLite.
 
-database.db           <-- Base de datos SQLite (se crea sola)
+* Conector GET (/api/alumnos): 
+  Cada vez que la página web necesita mostrar u actualizar la tabla de 
+  estudiantes, realiza una petición a esta ruta. El servidor consulta todos 
+  los registros guardados en SQLite (`SELECT *`) y se los devuelve a la 
+  interfaz en formato JSON para que se dibujen en la tabla HTML.
 
-package.json           <-- Configuración de dependencias
+5. REQUISITOS PREVIOS PARA LA EJECUCIÓN
 
-server.js            <-- Servidor Node.js y lógica de conexión
+Para poner en marcha la aplicación en tu computadora, asegúrate de tener 
+instalado:
+* Node.js (versión LTS recomendada).
+* Un editor de código como Visual Studio Code.
 
+6. PASOS PARA INSTALAR Y CORRER EL PROYECTO
 
+1. Descarga o abre la carpeta del proyecto en tu terminal o en Visual Studio Code.
+2. Si es la primera vez que abres el proyecto en esta computadora (o si cambiaste 
+   de sistema operativo), instala las dependencias necesarias ejecutando:
+   
+   npm install
 
-3. ¿CÓMO FUNCIONAN LOS CONECTORES?
+3. Enciende el servidor local ejecutando el siguiente comando:
+   
+   node server.js
 
-Los "conectores" son las rutas y peticiones HTTP que unen las 3 partes
+4. Abre tu navegador web favorito (Chrome, Brave, Firefox, etc.) e ingresa 
+   a la siguiente dirección para utilizar la aplicación:
+   
+   http://localhost:3000
 
-del proyecto:
+7. FUNCIONALIDAD DE AUTOLIMPIEZA (CIERRE DEL SERVIDOR)
 
-A) CONECTOR POST (/api/agregar):
-
-   - Conecta: El formulario de 'index.html' -> con 'server.js' -> y la base de datos.
-
-   - Función: Atrapa los datos que el usuario escribe en el formulario
-
-     (Nombre, DNI, Curso, etc.) y los guarda de forma permanente en la
-
-     tabla 'alumnos' de SQLite.
-
-
-
-B) CONECTOR GET (/api/alumnos):
-
-   - Conecta: La base de datos -> con 'server.js' -> y la tabla de 'index.html'.
-
-   - Función: Lee todos los alumnos guardados en la base de datos y los
-
-     manda a la página web para mostrarlos en la tabla de registros.
-
-
-
-4. INSTRUCCIONES PARA EJECUTAR EL PROYECTO
-
-Paso 1: Abrir la terminal dentro de la carpeta del proyecto.
-
-Paso 2: Ejecutar el siguiente comando para encender el servidor:
-
-        node server.js
-
-
-
-Paso 3: Abrir el navegador web e ingresar a la siguiente dirección:
-
-        http://localhost:3000
-
-
-
-Paso 4: Para probar el sistema:
-
-        1. Rellenar los campos del formulario con los datos del alumno.
-
-        2. Hacer clic en "Guardar Registro" (Conector POST).
-
-        3. Hacer clic en "Cargar / Actualizar Lista" para ver el alumno
-
-           guardado en la tabla (Conector GET).
+El sistema cuenta con una medida de seguridad y optimización que detecta 
+cuando se apaga el servidor en la terminal (presionando Ctrl + C). Al hacerlo, 
+cierra la conexión con la base de datos y borra automáticamente el archivo 
+`database.db`, asegurando que el entorno quede limpio para una nueva sesión.
