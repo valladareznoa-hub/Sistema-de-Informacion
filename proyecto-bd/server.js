@@ -5,14 +5,11 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// Configuración para recibir JSON y datos del formulario
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir la carpeta "public" donde está tu index.html y js.js
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 1. Conectar (o crear) la base de datos SQLite
 const db = new sqlite3.Database('./database.db', (err) => {
     if (err) {
         console.error("Error al conectar con la BD:", err.message);
@@ -21,7 +18,6 @@ const db = new sqlite3.Database('./database.db', (err) => {
     }
 });
 
-// 2. Crear la tabla 'alumnos' si no existe
 db.run(`
     CREATE TABLE IF NOT EXISTS alumnos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,7 +29,6 @@ db.run(`
     )
 `);
 
-// 3. Ruta POST para recibir los datos del formulario y guardarlos
 app.post('/api/agregar', (req, res) => {
     const { nombre, dni, curso, especialidad, turno } = req.body;
 
@@ -48,9 +43,8 @@ app.post('/api/agregar', (req, res) => {
     });
 });
 
-// Ruta GET para obtener todos los alumnos guardados
 app.get('/api/alumnos', (req, res) => {
-    console.log("¡Se solicitó la ruta /api/alumnos desde el navegador!"); // <--- Agrega esto
+    console.log("¡Se solicitó la ruta /api/alumnos desde el navegador!");
     
     const sql = `SELECT * FROM alumnos`;
     
@@ -63,7 +57,6 @@ app.get('/api/alumnos', (req, res) => {
     });
 });
 
-// 5. Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
