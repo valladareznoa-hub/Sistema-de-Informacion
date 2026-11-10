@@ -11,7 +11,7 @@ real mediante una tabla interactiva en pantalla.
 2. DISTRIBUCIÓN DE ROLES Y TRABAJO EN EQUIPO
 
 * Benicio: Diseño de la interfaz visual, maquetación y estructura de la 
-  página web (HTML/CSS).
+  página web (HTML).
 * Autor del proyecto: Programación de la lógica del servidor, creación de 
   las rutas de comunicación (conectores) y configuración de la base de datos.
 
