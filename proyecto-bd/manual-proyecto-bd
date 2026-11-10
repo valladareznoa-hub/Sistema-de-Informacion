@@ -20,15 +20,19 @@ real mediante una tabla interactiva en pantalla.
 El proyecto se organiza de la siguiente manera:
 
 /proyecto-bd
-│
-├── /public
-│     ├── index.html   <-- Interfaz visual (formulario y tabla de alumnos)
-│     └── js.js        <-- Lógica del navegador (captura eventos y hace peticiones)
-│
-├── server.js          <-- Servidor principal en Node.js y Express (controla la BD)
-├── database.db        <-- Base de datos SQLite (se genera automáticamente)
-├── package.json       <-- Configuración y dependencias del proyecto
-└── node_modules/      <-- Librerías instaladas (Express y SQLite3)
+    
+    node_modules/      <-- Librerías instaladas (Express y SQLite3)
+   
+    /public
+       index.html   <-- Interfaz visual (formulario y tabla de alumnos)
+       js.js        <-- Lógica del navegador (captura eventos y hace peticiones)
+    
+    server.js          <-- Servidor principal en Node.js y Express (controla la BD)
+    
+    database.db        <-- Base de datos SQLite (se genera automáticamente)
+    
+    package.json       <-- Configuración y dependencias del proyecto
+   
 
 4. CÓMO FUNCIONAN LOS CONECTORES (EL PUENTE ENTRE AMBOS LADOS)
 
