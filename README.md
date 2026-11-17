@@ -1,2 +1,1 @@
-# Sistema-de-Informacion
-VALLADAREZ REDONDO NOA BAUTISTA
+
